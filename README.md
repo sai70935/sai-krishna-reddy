@@ -1,63 +1,52 @@
 # sai krishna reddy 
 MSDS692_S40_Data Science Practicum
-Workforce Retraining for Occupations Exposed to Automation is a priority.
-Project Overview
-This project came about because I wanted to assist workforce boards in determining where to invest precious retraining dollars. I examined occupational characteristics, employment in each occupation, projected changes in employment, and projected annual job openings. My interest was to pinpoint occupations for greater scrutiny and potential for a small training pilot.
-Research Question
-Based on exposure to the tasks, number of workforce, job prospects, and number of openings per year, what occupations should workforce boards prioritize for retraining?
-Data
-The ONET occupational data was matched with BLS employment information. ONET is a description of job activities, skills, and working conditions. BLS offers employment figures, wages, growth projections and job openings.
+# Project Overview
+This project was designed to assist workforce boards in determining the best uses of scarce retraining dollars. I reviewed occupational occupations, employees and workforce numbers, potential job growth, and openings to determine occupations to be considered and possibly pursued for training support.
+# Research Question
+What jobs do workforce boards need to focus on retraining?
+# Data
+The project merges ONET occupational data with the BLS employment data. ONET is a description of job activities, skills and working conditions. BLS offers employment statistics, wages, projected employment growth, and projected job openings.
 
-The dataset contains 819 occupation rows, representing one row of data per 6 digit code. The employment workbook that is supplied contains projection columns for 2025-2035.
+This prepared data set includes 819 occupations, one row of data for each 6-digit occupational code. The projection period the employment workbook provides is 2025–2035. Details of its original release are still to be verified independently.
 
-Data limitation: These are national occupational averages. They don't reveal layoffs, demand of local employers, or if a specific company has adopted automation. The details of the original release of the employment workbook require independent verification.
-Methodology
-The first step in creating an exposure indicator was to develop a list of 15 occupational characteristics. I then merged exposure data with job information and I computed a retraining-priority score:
+These are average results for the country as a whole. They are not showing individual workers' work experiences, local employers' demands, actual layoffs or if a specific company has embraced automation.
+# Methodology
+Developed a task-exposure indicator based on 15 occupational characteristics. I then added it with the employment data to come up with a retraining-priority score, with the following weights:
 - Task exposure: 40%
 - Workforce size: 30%
 - Annual openings: 20%
-- Projected decline: 10%
-The following weights are suggested policy options. To determine if the rankings changed, I tried out various weights.
+- Projected employment decline: 10%
+These weights are a suggested funding policy and are not the best formula. Tested the different weights to determine the effect on the occupation ranks.
 
-I also looked into occupational patterns using K-Means as well as cosine similarity for determining possible career transition options using PCA. In a separate analysis, I compared the results of Ridge and Random Forest regression to a mean baseline to estimate BLS projected employment growth.
-Main Findings
-Bookkeeping was the second most important according to my proposed priority score and remained in the top three of the five weighting policies. Based on the provided information, the number of bookkeeping job postings is around 1.44 lakh annually, with a projected job loss of 5.6%, and 1.53 lakh workers are engaged in bookkeeping activities.
+I used K-Means to look for clusters of similar jobs, PCA to create a description of the various occupations, then cosine similarity to find career transition possibilities.
 
-The proposed formula ranked customer service representatives No. 1. Bookkeeping is, therefore not just a career to pursue, but one strong alternative to the pilot career.
-Recommendation
-It is a good idea to see what the needs are in your area and possibly a small trial of a bookkeeping training program. Training may be on digital accounting software, checking automated working out, investigating workings and interpreting financial information.
+As part of this analysis I compared Ridge regression and Random Forest regression to a mean baseline. These models are based on occupational features and use the BLS's projected growth rates of employment in percentage terms. They don't forecast job losses or assess the impact of automation.
+# Main Findings
+My proposed priority score was first for customer service and second for bookkeeping. Five weighting policies included bookkeeping, which was always among the top three occupations to be considered for further analysis.
 
-Before expanding the program, the board should assess the impacts of employment, retention, and wage outcomes.
-Repository Files
-- analysis.ipynb — the final analysis notebook.
-The prepared data is stored in the following file: data/eda_merged_occupations.csv
-- The supplied employment workbook data/raw/occupation.xlsx.
-data/README.md — information about the data and preparation steps.
-- scripts/prepare_data.py — script for preparing the data.
-- scripts/run_notebook.py — script for running the notebooks.
-- requirements.txt — Python packages that are required.
-Running the Analysis
-Open a terminal window in the main folder of the repository, using Python 3.12.
+The data provided indicates that there are around 1.53 million bookkeeping jobs, 144,100 projected job openings, and a projected loss of 5.6% in employment opportunities over the next 10 years. Estimated openings are based on projected openings in the year, including replacement openings, but do not represent job postings.
 
-Install necessary packages:
-Python -m pip install -r requirements.txt
+The results confirm the idea of training bookkeeping as a training pilot. But this involves further research on local demand and training viability, as well as partners, and is only the right choice for those choosing to select it before customer service.
+# Recommendation
+Local variation in demand should be considered before embarking on a small bookkeeping retraining pilot with workforce boards. Opportunities for training range from accounting software, automated check-outs, discrepancy investigation and interpretation of financial information.
 
-Run the notebook:
-python scripts/run_notebook.py
+Before expanding the program, the board should track the outcomes of employment, retention, and wages. Having a comparison group would help to determine if improvements were due to training or to a larger-scale shift in the labor market.
 
-It can be opened in JupyterLab too:
-jupyter lab
+# Running the Analysis
+Open a terminal in the main folder of the repository using Python 3.12.
 
-Open analysis.ipynb, click on the right python kernel and run the cells sequentially from top to bottom.
-Limitations
-Don't assume that a high exposure score will mean a job will be lost. Scoring is a judgement process and can vary from one country to another.
+# Install the necessary packages:
+To install the required packages, use the following command: python -m pip install -r requirements.txt
 
-The regression models provide an estimate of future employment as projected by the BLS. The feature importance was computed from the training data so is to be interpreted with caution. Further checks are also needed for possible career transitions, including education and licensing requirements, and opportunities within the locality.
+# Limitations
+A high task-exposure rating does not imply that an occupation will be eliminated. The exposure indicator and priority weights are based on personal judgment of the researchers and can be affected by other assumptions and assumptions can change the rankings.
 
-This project does not have a training pilot in place to determine if the proposed training will lead to workers' better outcomes.
-Reproducibility
-A set of 73 code cells was included in the packaged analysis and none of them were encountered errors during the execution using the provided pre-packaged CSV in the provided environment. It has not yet been verified to be a clean installation on another computer.
+The regression models are estimates of published projections of employment growth and not actual employment in the future. Permutation importance was computed on training data, so it should be interpreted with caution.
 
-The original archive is incomplete and a complete archive is needed to rebuild the data set. The repository describes this and details the difference from running the prepared-data analysis versus reconstructing the entire pipeline.
-LLM Assistance
-I relied on an LLM to assist with coding, problem-solving and the comprehension of technical topics. I am still in charge of verifying the results, describing the procedures, and communicating the nature of what the analysis can and cannot tell.
+Career transitions suggested are not final and will be subject to additional education/licensing/training requirements as well as local opportunities. No training pilot has taken place, so this analysis is unable to confirm that the proposed training will make a difference to worker outcomes.
+# Reproducibility
+The packaged analysis includes 73 code cells that ran without any errors in the sample environment with the provided CSV. Not yet independently tested for installation and execution on other computer.
+
+The archive of O*NET data provided to the project was missing some data. You need a complete archive that can be used to regenerate the data from the sources. Hence, executing the analysis with the supplied prepared CSV is not reproduction of the entire preparation.
+# LLM Assistance
+When developing questions, I used an LLM as a technical assistance tool to code questions, troubleshoot errors, and interpret analytical approaches. I am still in charge of verifying the results, interpreting the code, and ensuring that the conclusions are consistent with the evidence.
